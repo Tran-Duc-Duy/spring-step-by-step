@@ -1,5 +1,6 @@
 package com.example.learnspring.controller;
 
+import com.example.learnspring.domain.Student;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -11,6 +12,7 @@ public class HomeController {
     public String index() {
         return "index";
     }
+
 }
 /*
     ! JSP không được thiết lập trong spring boot nên cần thiết lập thủ công
