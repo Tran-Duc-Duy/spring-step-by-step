@@ -1,4 +1,4 @@
-package com.example.learnspring.domain;
+package com.example.learnspring.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
