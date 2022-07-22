@@ -9,5 +9,6 @@
 </head>
 <body>
     <h1>Chao xin from index.jsp</h1>
+    <a href="students/new">Add New Student</a>
 </body>
 </html>
