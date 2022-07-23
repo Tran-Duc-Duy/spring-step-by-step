@@ -8,9 +8,34 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 @Controller
 @RequestMapping("students")
 public class StudentController {
+    // b2
+    @ModelAttribute("genders")
+    public Map<Boolean,String> getGenders() {
+        Map<Boolean,String> genders = new HashMap<>();
+        genders.put(true,"Male");
+        genders.put(false,"Female");
+        return genders;
+    }
+    @ModelAttribute("hobbies")
+    public Map<String, String> getHobbies(){
+        Map<String, String> hobbies = new HashMap<>();
+
+        hobbies.put("M", "Music");
+        hobbies.put("S", "Sports");
+        return hobbies;
+    }
+    @ModelAttribute("faculties")
+    public List<String> getFaculties(){
+        return List.of("Computer Science", "Information Technology", "Electrical Engineering");
+    }
+    // b1
     @GetMapping ("new")
     public String newForm(Model model) {
         model.addAttribute("student", new Student());

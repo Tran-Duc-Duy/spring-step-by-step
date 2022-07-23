@@ -10,11 +10,13 @@
 </head>
 <body>
     <form:form action="/students/saveOrUpdate" method="post" modelAttribute="student">
-        Student ID: <form:input path="studentId"/> <br />
+        Student ID: <form:input path="student.studentId"/> <br />
         Name: <form:input path="name"/> <br>
         Email: <form:input path="email"/> <br />
         Mark: <form:input path="mark"/> <br />
-        Faculty: <form:input path="faculty"/> <br>
+        Faculty: <form:select path="faculty" items="${faculties}"></form:select> <br/>
+        <form:radiobuttons path="gender" items="${genders}"></form:radiobuttons> <br>
+        <form:checkboxes items="${hobbies}" path="hobbies"/>
         <form:button>Save</form:button>
     </form:form>
 </body>
