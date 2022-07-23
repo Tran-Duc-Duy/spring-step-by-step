@@ -15,7 +15,7 @@ import java.util.List;
 public class Student {
     @NotEmpty
     private String studentId;
-    @NotEmpty
+    @NotEmpty(message ="{NotEmpty.student.name}")
     @Size(min=5)
     private String name;
     @Email
