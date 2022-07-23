@@ -1,6 +1,7 @@
 package com.example.learnspring.controller;
 
 import com.example.learnspring.model.Student;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +9,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.ServletContext;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +18,10 @@ import java.util.Map;
 @Controller
 @RequestMapping("students")
 public class StudentController {
+    //b3
+    @Autowired
+    ServletContext application; //dung de upload file b3 (application.getRealPath("/")
+
     // b2
     @ModelAttribute("genders")
     public Map<Boolean,String> getGenders() {
@@ -43,6 +50,20 @@ public class StudentController {
     }
     @PostMapping("saveOrUpdate")
     public String saveOrUpdate(@ModelAttribute("student") Student student) {
+
+        //b3 update
+        if(!student.getImageFile().isEmpty()) {
+            String path = application.getRealPath("/");//getRealPath() lấy đường dẫn thư mục webapps
+            System.out.println("path: " + path);
+            try {
+                student.setImageUrl(student.getImageFile().getOriginalFilename());//getOriginalFilename() lấy tên file
+                String filePath = path + "/images/" + student.getImageUrl(); // lấy đường dẫn file
+                student.getImageFile().transferTo(Path.of(filePath));// transferTo() lưu file vào đường dẫn
+                student.setImageFile(null);// xóa file trong thể hiện
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         System.out.println(student.getStudentId());
         System.out.println(student.getName());
         return "students/detail";

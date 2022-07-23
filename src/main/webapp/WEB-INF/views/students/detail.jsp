@@ -13,5 +13,7 @@
     <h3>Email: ${student.email}</h3>
     <h3>Hobbies: ${student.hobbies}</h3>
     <h3>Gender: ${student.gender}</h3>
+    //b3
+    <h3>Image: <img src="/images/${student.imageUrl}" alt="img"></h3>
 </body>
 </html>
